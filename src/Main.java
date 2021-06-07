@@ -3,14 +3,14 @@ import java.util.concurrent.Semaphore;
 
 public class Main {
     
-    public static void busy() {
-        try {
-        	Random rand = new Random();
+	public static void busy() {
+		try {
+			Random rand = new Random();
 			Thread.sleep(rand.nextInt(500));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-    }
+	}
 	
 	public static void main(String argv[]) {
 
@@ -24,18 +24,18 @@ public class Main {
 		}
 		Elevator elevator = new Elevator(floors, mutex);
 		
-	    for (int i = 0; i < 5; i++) {
-	    	passengers[i] = new Passenger(i, elevator, floors, mutex);
-	    }
+		for (int i = 0; i < 5; i++) {
+			passengers[i] = new Passenger(i, elevator, floors, mutex);
+		}
 		
 		elevator.start();
 
         
-        // other passengers arrive
-	    for (int i = 0; i < 5; i++) {
-	    	passengers[i].start();
-	    	busy();
-	    }
+        	// passengers arrive
+		for (int i = 0; i < 5; i++) {
+	    		passengers[i].start();
+	    		busy();
+	    	}
 	}
 	
 }
